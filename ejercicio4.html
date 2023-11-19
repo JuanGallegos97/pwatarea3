@@ -1,0 +1,38 @@
+<?php
+session_start();
+
+$respuesta = isset($_SESSION['respuesta']) ? $_SESSION['respuesta'] : rand(1, 10);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $adivinanza = $_POST['adivinanza'];
+
+    if ($adivinanza == $respuesta) {
+        $mensaje = '¡Felicidades! Has adivinado el número.';
+        unset($_SESSION['respuesta']);
+    } else {
+        $mensaje = 'Lo siento, intenta de nuevo.';
+    }
+} else {
+    $mensaje = 'Adivina el número (entre 1 y 10).';
+    $_SESSION['respuesta'] = $respuesta;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Adivinanzas</title>
+</head>
+<body>
+
+    <h1><?php echo $mensaje; ?></h1>
+
+    <form method="post">
+        <input type="number" name="adivinanza" required>
+        <button type="submit">Adivinar</button>
+    </form>
+
+</body>
+</html>

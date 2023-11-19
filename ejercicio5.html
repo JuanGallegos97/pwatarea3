@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Galería de Imágenes</h1>
+
+    <div id="galeria">
+        <?php
+        $imagenes = glob('imagenes/*.{jpg,png,gif}', GLOB_BRACE);
+
+        foreach ($imagenes as $imagen) {
+            echo '<img src="' . $imagen . '" alt="Imagen">';
+        }
+        ?>
+    </div>
+
+</body>
+</html>

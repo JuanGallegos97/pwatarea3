@@ -1,0 +1,14 @@
+<?php
+session_start();
+
+$usuarios = array(
+    'usuario1' => 'contraseña1',
+    'usuario2' => 'contraseña2',
+    // Agrega más usuarios según sea necesario
+);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+
+    if (
